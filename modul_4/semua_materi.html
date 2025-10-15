@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contoh Event Klik</title>
+  </head>
+  <body>
+    <!-- (poin A) -->
+    <button onclick="hello()">Hello</button>
+    <button id="hello-stikompgri">Hello Stikom PGRI</button>
+
+    <!-- poin B -->
+    <button id="btn-enter">Mouse Enter</button>
+    <button id="btn-hover">Hover</button>
+    <button id="btn-out">Mouse Out</button>
+
+    <!-- poin C -->
+    <h1 id="keydown">tekan</h1>
+    <h1 id="pressed">tahan</h1>
+    <h1 id="keyup">lepas</h1>
+
+    <!-- poin D -->
+    <div id="info"></div>
+    <label for="buah">Pilih Buah</label>
+    <select name="buah" id="buah">
+      <option>Apel</option>
+      <option>Mangga</option>
+      <option>Jeruk</option>
+    </select>
+
+    <form id="form-login">
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required />
+      <button type="submit">Login</button>
+      <button type="reset">Reset</button>
+    </form>
+
+    <p id="feedback"></p>
+
+    <!-- poin F -->
+    <div id="message" style="display: none; background: lightgreen">
+      Pendaftaran berhasil
+    </div>
+    <button id="btn-submit">Daftar Sekarang</button>
+
+    <!-- latihan event bubling -->
+    <p id="outer">
+      Coba klik teks ini. Coba juga klik
+      <strong id="inner">strong teks ini</strong>
+    </p>
+
+    <!-- latihan event capturing -->
+    <p id="outer-capture">
+      Coba klik teks ini. Coba juga klik
+      <strong id="inner-capture">strong teks ini (Capturing)</strong>
+    </p>
+
+    <!-- latihan event propagation -->
+    <p id="outer-stop">
+      Coba klik teks ini. Coba juga klik
+      <strong id="inner-stop">strong teks ini (Stop Propagation)</strong>
+    </p>
+
+    <!-- ----------------------------------------------------------------------------- -->
+
+    <script>
+      ///poin A
+      function hello() {
+        alert("Hello World");
+      }
+
+      const btnLogin = document.getElementById("hello-stikompgri");
+      btnLogin.addEventListener("click", function () {
+        alert("Hello Stikom PGRI");
+      });
+
+      ///poin B
+      const btnEnter = document.getElementById("btn-enter");
+      const btnHover = document.getElementById("btn-hover");
+      const btnOut = document.getElementById("btn-out");
+
+      btnEnter.addEventListener("mouseenter", function (event) {
+        event.target.innerText = "Mouse sudah masuk";
+      });
+
+      btnOut.addEventListener("mouseout", function (event) {
+        event.target.innerText = "Mouse sudah keluar";
+      });
+
+      btnHover.addEventListener("mouseover", function (event) {
+        event.target.innerText = "Mouse sudah di atas elemen";
+      });
+
+      ///poin C
+      const keydown = document.getElementById("keydown");
+      const pressed = document.getElementById("pressed");
+      const keyup = document.getElementById("keyup");
+
+      document.addEventListener("keydown", function (event) {
+        keydown.innerText = `sudah ditekan ${event.key}`;
+      });
+
+      document.addEventListener("keypress", function (event) {
+        pressed.innerText = `sudah ditahan ${event.key}`;
+      });
+
+      document.addEventListener("keyup", function (event) {
+        keyup.innerText = `sudah dilepas ${event.key}`;
+      });
+
+      ///poin D
+      const buah = document.getElementById("buah");
+      const info = document.getElementById("info");
+
+      buah.addEventListener("change", function (e) {
+        info.innerText = `Anda memilih: ${e.target.value}`;
+      });
+
+      const formLogin = document.getElementById("form-login");
+      const feedbackMessage = document.getElementById("feedback");
+
+      // mendengarkan event submit pada form
+      formLogin.addEventListener("submit", function (event) {
+        event.preventDefault();
+        const data = new FormData(event.target);
+        feedbackMessage.innerHTML = `Login dengan username <code>${data.get(
+          "username"
+        )}</code> dikirim!`;
+      });
+
+      // mendengarkan event reset pada form
+      formLogin.addEventListener("reset", function () {
+        feedbackMessage.textContent = "Form dibersihkan!";
+      });
+
+      //poin F
+
+      const eventRegisterComplete = new Event("register-complete");
+
+      const messageElement = document.getElementById("message");
+      const btnSubmit = document.getElementById("btn-submit");
+
+      document.addEventListener("register-complete", function () {
+        messageElement.style.display = "block";
+      });
+
+      btnSubmit.addEventListener("click", function (e) {
+        document.dispatchEvent(eventRegisterComplete);
+      });
+
+      //event bubling
+      let outer = document.getElementById("outer");
+      let inner = document.getElementById("inner");
+
+      outer.addEventListener("click", () => {
+        alert("Outer elemen diklik");
+      });
+
+      inner.addEventListener("click", () => {
+        alert("Inner elemen diklik");
+      });
+
+      //event capturing
+      let outerCapture = document.getElementById("outer-capture");
+      let innerCapture = document.getElementById("inner-capture");
+
+      outerCapture.addEventListener(
+        "click",
+        () => {
+          alert("Outer (Capturing) elemen diklik");
+        },
+        true
+      );
+
+      innerCapture.addEventListener(
+        "click",
+        () => {
+          alert("Inner (Capturing) elemen diklik");
+        },
+        true
+      );
+
+      //event propagation
+      let outerStop = document.getElementById("outer-stop");
+      let innerStop = document.getElementById("inner-stop");
+
+      outerStop.addEventListener("click", () => {
+        alert("Outer elemen diklik (tidak dihentikan)");
+      });
+
+      innerStop.addEventListener("click", (event) => {
+        alert("Inner elemen diklik — event tidak diteruskan ke outer");
+        event.stopPropagation();
+      });
+    </script>
+  </body>
+</html>

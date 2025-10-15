@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Program Penjualan Motor</title>
+    <style>
+      body {
+        font-family: "Poppins", Arial, sans-serif;
+        background: linear-gradient(to right, #e3f2fd, #bbdefb);
+        margin: 0;
+        padding: 0;
+      }
+
+      .container {
+        max-width: 600px;
+        background: #ffffff;
+        margin: 50px auto;
+        padding: 30px 40px;
+        border-radius: 15px;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      h2 {
+        text-align: center;
+        margin-bottom: 25px;
+        color: #0d47a1;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      td {
+        padding: 8px 5px;
+        vertical-align: top;
+      }
+
+      input[type="text"],
+      select {
+        width: 100%;
+        padding: 8px;
+        border-radius: 8px;
+        border: 1px solid #90caf9;
+        font-size: 14px;
+      }
+
+      input[type="checkbox"],
+      input[type="radio"] {
+        margin-right: 6px;
+      }
+
+      .button {
+        text-align: center;
+        margin-top: 20px;
+      }
+
+      input[type="button"],
+      input[type="reset"] {
+        background-color: #1976d2;
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        margin: 5px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 15px;
+        transition: background-color 0.3s ease;
+      }
+
+      input[type="reset"] {
+        background-color: #ef5350;
+      }
+
+      input[type="button"]:hover {
+        background-color: #0d47a1;
+      }
+
+      input[type="reset"]:hover {
+        background-color: #b71c1c;
+      }
+
+      .info {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 25px;
+        color: #333;
+      }
+
+      .hasil input {
+        background-color: #e3f2fd;
+        font-weight: bold;
+        text-align: right;
+      }
+
+      hr {
+        border: 0;
+        height: 1px;
+        background-color: #bbdefb;
+        margin: 20px 0;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h2>PROGRAM PENJUALAN MOTOR</h2>
+      <form name="formMotor">
+        <table>
+          <tr>
+            <td><strong>Merk Motor</strong></td>
+            <td>
+              <select name="merk" id="merk">
+                <option value="Honda">Honda</option>
+                <option value="Yamaha">Yamaha</option>
+                <option value="Suzuki">Suzuki</option>
+              </select>
+            </td>
+          </tr>
+
+          <tr>
+            <td><strong>Aksesoris</strong></td>
+            <td>
+              <label
+                ><input type="checkbox" name="aks" value="Velg" />Velg
+                Racing</label
+              ><br />
+              <label
+                ><input type="checkbox" name="aks" value="Helm" />Helm</label
+              ><br />
+              <label
+                ><input type="checkbox" name="aks" value="Jaket" />Jaket</label
+              >
+            </td>
+          </tr>
+
+          <tr>
+            <td><strong>Cara Pembayaran</strong></td>
+            <td>
+              <label
+                ><input
+                  type="radio"
+                  name="bayar"
+                  value="Tunai"
+                  checked
+                />Tunai</label
+              >
+              <label
+                ><input type="radio" name="bayar" value="Kredit" />Kredit</label
+              >
+            </td>
+          </tr>
+        </table>
+
+        <hr />
+
+        <table class="hasil">
+          <tr>
+            <td><strong>Harga</strong></td>
+            <td><input type="text" id="harga" readonly /></td>
+          </tr>
+          <tr>
+            <td><strong>Bunga / Diskon</strong></td>
+            <td><input type="text" id="diskon" readonly /></td>
+          </tr>
+          <tr>
+            <td><strong>Total Bayar</strong></td>
+            <td><input type="text" id="total" readonly /></td>
+          </tr>
+        </table>
+
+        <div class="button">
+          <input type="button" value="Proses" onclick="proses()" />
+          <input type="reset" value="Reset" />
+        </div>
+      </form>
+
+      <p class="info">
+        Jika membayar secara <b>Tunai</b> akan mendapat diskon <b>10%</b><br />
+        Jika membayar secara <b>Kredit</b> akan dikenakan bunga <b>15%</b>.
+      </p>
+    </div>
+
+    <script>
+      function proses() {
+        // Daftar harga motor
+        const hargaMotor = {
+          Honda: 15000000,
+          Yamaha: 14000000,
+          Suzuki: 13000000,
+        };
+
+        // Daftar harga aksesoris
+        const hargaAksesoris = {
+          Velg: 450000,
+          Helm: 250000,
+          Jaket: 300000,
+        };
+
+        // Ambil nilai dari form
+        const merk = document.getElementById("merk").value;
+        const motorHarga = hargaMotor[merk];
+
+        const aksesoris = document.getElementsByName("aks");
+        let totalAks = 0;
+        for (let i = 0; i < aksesoris.length; i++) {
+          if (aksesoris[i].checked) {
+            totalAks += hargaAksesoris[aksesoris[i].value];
+          }
+        }
+
+        const pembayaran = document.querySelector(
+          'input[name="bayar"]:checked'
+        ).value;
+
+        // Hitung harga awal
+        const hargaAwal = motorHarga + totalAks;
+
+        // Hitung diskon/bunga
+        let bungaDiskon = 0;
+        if (pembayaran === "Tunai") {
+          bungaDiskon = -0.1 * hargaAwal; // diskon 10%
+        } else {
+          bungaDiskon = 0.15 * hargaAwal; // bunga 15%
+        }
+
+        const totalBayar = hargaAwal + bungaDiskon;
+
+        // Tampilkan hasil
+        document.getElementById("harga").value =
+          hargaAwal.toLocaleString("id-ID");
+        document.getElementById("diskon").value =
+          bungaDiskon.toLocaleString("id-ID");
+        document.getElementById("total").value =
+          totalBayar.toLocaleString("id-ID");
+      }
+    </script>
+  </body>
+</html>
