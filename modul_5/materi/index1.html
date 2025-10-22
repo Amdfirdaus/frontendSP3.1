@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Contoh AJAX dengan jQuery</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+  <body>
+    <h2>Data Mahasiswa</h2>
+    <button id="tampilData">Tampilkan Data</button>
+    <div id="hasil"></div>
+
+    <script>
+      $(document).ready(function () {
+        $("#tampilData").click(function () {
+          $.ajax({
+            url: "mahasiswa.json", // file data JSON yang mau diambil
+            type: "GET", // metode HTTP
+            dataType: "json",
+            success: function (data) {
+              var output = "<ul>";
+
+              // Loop data JSON dan buat list
+              $.each(data, function (index, mahasiswa) {
+                output +=
+                  "<li>" + mahasiswa.nama + " - " + mahasiswa.nim + "</li>";
+              });
+
+              output += "</ul>";
+              $("#hasil").html(output);
+            },
+            error: function (xhr, status, error) {
+              $("#hasil").html("Terjadi kesalahan: " + error);
+            },
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
