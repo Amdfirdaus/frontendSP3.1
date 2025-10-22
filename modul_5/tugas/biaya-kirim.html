@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Perhitungan Biaya Kirim Paket</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: #a0a6a2;
+        padding: 30px;
+      }
+      h2 {
+        color: #1e2120;
+        text-align: center;
+      }
+      form {
+        background: white;
+        padding: 80px;
+        border-radius: 10px;
+        max-width: 400px;
+        margin: 0 auto;
+        box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+      }
+      label {
+        display: block;
+        margin-top: 10px;
+      }
+      input,
+      select {
+        width: 100%;
+        padding: 8px;
+        margin-top: 4px;
+      }
+      #total {
+        font-weight: bold;
+        color: green;
+        font-size: 18px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>PERHITUNGAN BIAYA KIRIM PAKET</h2>
+    <form>
+      <label>Nomor Resi:</label>
+      <input type="text" id="resi" placeholder="Contoh: RESI001" />
+
+      <label>Berat Barang (Kg):</label>
+      <input
+        type="number"
+        id="berat"
+        min="0"
+        step="0.1"
+        placeholder="Masukkan berat"
+        oninput="hitungTotal()"
+      />
+
+      <label>Kota Asal:</label>
+      <select id="asal" onchange="hitungTotal()">
+        <option value="">-- Pilih Kota Asal --</option>
+      </select>
+
+      <label>Kota Tujuan:</label>
+      <select id="tujuan" onchange="hitungTotal()">
+        <option value="">-- Pilih Kota Tujuan --</option>
+      </select>
+
+      <label>Total Biaya Pengiriman:</label>
+      <p id="total">Rp 0</p>
+    </form>
+
+    <script>
+      // Data kota dan biaya jarak antar kota
+      const biayaJarak = {
+        Banyuwangi: {
+          Banyuwangi: 0,
+          Jember: 7500,
+          Probolinggo: 10000,
+          Surabaya: 15000,
+        },
+        Jember: {
+          Banyuwangi: 7500,
+          Jember: 0,
+          Probolinggo: 8500,
+          Surabaya: 12500,
+        },
+        Probolinggo: {
+          Banyuwangi: 10000,
+          Jember: 8500,
+          Probolinggo: 0,
+          Surabaya: 6500,
+        },
+        Surabaya: {
+          Banyuwangi: 15000,
+          Jember: 12500,
+          Probolinggo: 6500,
+          Surabaya: 0,
+        },
+      };
+
+      // Biaya berdasarkan berat barang
+      function hitungBiayaBerat(berat) {
+        if (berat <= 1) return 1500;
+        else if (berat <= 5) return 2500;
+        else if (berat <= 10) return 3500;
+        else return 4500;
+      }
+
+      // Isi dropdown kota asal & tujuan
+      const kotaList = Object.keys(biayaJarak);
+      const asalSelect = document.getElementById("asal");
+      const tujuanSelect = document.getElementById("tujuan");
+
+      kotaList.forEach((kota) => {
+        let opt1 = new Option(kota, kota);
+        let opt2 = new Option(kota, kota);
+        asalSelect.add(opt1);
+        tujuanSelect.add(opt2);
+      });
+
+      // Fungsi menghitung total biaya
+      function hitungTotal() {
+        const asal = asalSelect.value;
+        const tujuan = tujuanSelect.value;
+        const berat = parseFloat(document.getElementById("berat").value) || 0;
+        const totalElemen = document.getElementById("total");
+
+        if (!asal || !tujuan || berat <= 0) {
+          totalElemen.textContent = "Rp 0";
+          return;
+        }
+
+        const biayaBerat = hitungBiayaBerat(berat);
+        const biayaJrk = biayaJarak[asal][tujuan];
+        const total = biayaBerat + biayaJrk;
+
+        totalElemen.textContent = `Rp ${total.toLocaleString("id-ID")}`;
+      }
+    </script>
+  </body>
+</html>
