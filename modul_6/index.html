@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contoh Popup</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f3f3f3;
+      text-align: center;
+      padding-top: 100px;
+    }
+
+    .popup {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .popup-content {
+      background-color: #fff;
+      margin: 15% auto;
+      padding: 20px;
+      width: 300px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #333;
+    }
+
+    .close {
+      float: right;
+      font-size: 24px;
+      cursor: pointer;
+    }
+  </style>
+
+  <body>
+    <button id="openPopup">Tampilkan Popup</button>
+
+    <div id="popup" class="popup">
+      <div class="popup-content">
+        <span id="closePopup" class="close">&times;</span>
+        <h2>Selamat Datang!</h2>
+        <p>Ini adalah contoh popup sederhana.</p>
+      </div>
+    </div>
+
+    <!-- ============================================================ -->
+
+    <button id="btnForm">Isi Data Barang</button>
+
+    <div id="popupForm" class="popup">
+      <div class="popup-content">
+        <span id="closeForm" class="close">&times;</span>
+        <h3>Form Pengisian Data Barang</h3>
+        <form id="formBarang">
+          <label>Nama Barang:</label><br />
+          <input type="text" id="nama" /><br /><br />
+
+          <label>Harga Barang:</label><br />
+          <input type="number" id="harga" /><br /><br />
+
+          <label>Jumlah Barang:</label><br />
+          <input type="number" id="jumlah" /><br /><br />
+
+          <button type="button" id="kirim">Kirim</button>
+        </form>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
