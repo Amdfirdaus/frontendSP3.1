@@ -1,0 +1,147 @@
+body {
+  font-family: "Segoe UI", sans-serif;
+  background-color: #ffffff;
+  color: #222;
+  margin: 30px;
+}
+
+h2 {
+  text-align: center;
+  color: #2c3e50;
+}
+
+.form-container,
+.hasil-container {
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  width: 400px;
+  margin: 20px auto;
+}
+
+label {
+  display: block;
+  margin-top: 10px;
+  font-weight: 600;
+}
+input,
+select {
+  width: 100%;
+  padding: 6px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.button-group {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+button {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+#btnHitung {
+  background-color: #007bff;
+  color: white;
+}
+.reset {
+  background-color: #777;
+  color: white;
+}
+
+.popup {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(3px);
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.popup-content {
+  background: linear-gradient(145deg, #ffffff, #f5f5f5);
+  border-radius: 16px;
+  padding: 25px;
+  width: 340px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  animation: popFade 0.3s ease;
+}
+
+@keyframes popFade {
+  from {
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.popup-content ul {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+}
+
+.popup-content li {
+  padding: 10px;
+  background: #ececec;
+  border-radius: 8px;
+  margin: 6px 0;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.popup-content li:hover {
+  background: #007bff;
+  color: white;
+}
+
+.popup-content li.selected {
+  background: #0066d6;
+  color: #fff;
+  font-weight: 600;
+}
+
+.popup-buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.simpan {
+  background-color: #007bff;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: none;
+}
+
+.batal {
+  background-color: #aaa;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: none;
+}
+
+.ketentuan {
+  width: 480px;
+  background-color: #f0f0f0;
+  border-left: 5px solid #007bff;
+  margin: 20px auto;
+  padding: 10px 15px;
+  border-radius: 8px;
+}
