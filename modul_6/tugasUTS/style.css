@@ -10,6 +10,20 @@ h2 {
   color: #2c3e50;
 }
 
+.bodycontainer1 {
+  background-color: #2c3e50;
+  align-items: center;
+  width: 600px;
+  padding: 10px;
+  border-radius: 40px;
+  box-shadow: 0 5px 9px rgba(0, 0, 0, 0.1);
+}
+.element {
+  display: flex;
+  gap: 50px;
+  padding: 20px;
+  justify-content: center;
+}
 .form-container,
 .hasil-container {
   background: #fff;
@@ -39,6 +53,7 @@ select {
   justify-content: center;
   gap: 10px;
   margin-top: 15px;
+  margin-bottom: 15px;
 }
 
 button {
@@ -138,7 +153,7 @@ button {
 }
 
 .ketentuan {
-  width: 480px;
+  width: 410px;
   background-color: #f0f0f0;
   border-left: 5px solid #007bff;
   margin: 20px auto;
