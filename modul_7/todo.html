@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Todo - jQuery</title>
+    <link rel="stylesheet" href="style.css" />
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Todo List</h1>
+      <form id="todo-form">
+        <input
+          type="text"
+          id="todo-input"
+          placeholder="Tambah tugas..."
+          autocomplete="off"
+        />
+        <button type="submit" id="add-btn">Tambah</button>
+      </form>
+
+      <ul id="todo-list"></ul>
+      <button id="clear-btn">Hapus Semua</button>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

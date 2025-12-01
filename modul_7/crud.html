@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>CRUD - jQuery</title>
+    <link rel="stylesheet" href="stylecrud.css" />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <h1>CRUD: Daftar Pengguna</h1>
+
+      <form id="user-form">
+        <input type="hidden" id="user-id" value="" />
+        <div style="display: flex; gap: 8px; margin-bottom: 8px">
+          <input type="text" id="name" placeholder="Nama" />
+          <input type="email" id="email" placeholder="Email" />
+          <button type="submit" id="save-btn">Simpan</button>
+        </div>
+      </form>
+
+      <table
+        id="user-table"
+        border="0"
+        cellpadding="8"
+        cellspacing="0"
+        style="width: 100%"
+      >
+        <thead>
+          <tr style="text-align: left; background: #f1f1f1">
+            <th>Nama</th>
+            <th>Email</th>
+            <th>Aksi</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <script src="scriptcrud.js"></script>
+  </body>
+</html>
