@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- jQuery UI -->
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+
+    <!-- jQuery UI CSS -->
+    <link
+      rel="stylesheet"
+      href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css"
+    />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Header -->
+    <div class="navbar">
+      <div class="logo"><img src="/asset/logo1.png" alt="error" /></div>
+      <input type="text" placeholder="Cari bangunan..." class="search-box" />
+      <button class="btn-cari">Cari</button>
+      <div class="icons">
+        <span class="icon">🛒</span>
+        <span class="icon">👤</span>
+      </div>
+    </div>
+
+    <!-- menu -->
+    <div class="menu">
+      <a>Semen</a>
+      <a>keramik</a>
+      <a>peralatan</a>
+      <a>besi dan baja</a>
+      <a>pipa</a>
+      <a>atap</a>
+      <a>kayu</a>
+      <a>cat</a>
+    </div>
+
+    <!-- filter harga -->
+    <div class="filter-box">
+      <h3>Filter Harga</h3>
+      <p id="labelharga">Harga : Rp 20.000 - Rp 150.000</p>
+      <div id="slider"></div>
+    </div>
+
+    <!-- produk -->
+    <div class="produk-container">
+      <div class="produk" data-harga="55000">
+        <h4>Semen 50kg</h4>
+        <p class="harga">Rp 55.000</p>
+        <p class="terjual">2.100 Terjual</p>
+        <button>Tambahkan ke keranjang</button>
+      </div>
+      <div class="produk" data-harga="25000">
+        <h4>Paku baja 1kg</h4>
+        <p class="harga">Rp 25.000</p>
+        <p class="terjual">2.100 Terjual</p>
+        <button>Tambahkan ke keranjang</button>
+      </div>
+      <div class="produk" data-harga="60000">
+        <h4>keramik 40 x 40</h4>
+        <p class="harga">Rp. 60.000</p>
+        <p class="terjual">2.100 Terjual</p>
+        <button>Tambahkan ke keranjang</button>
+      </div>
+      <div class="produk" data-harga="78000">
+        <h4>Cat 10L</h4>
+        <p class="harga">Rp. 78.000</p>
+        <p class="terjual">2.100 Terjual</p>
+        <button>Tambahkan ke keranjang</button>
+      </div>
+      <div class="produk" data-harga="500000">
+        <h4>kayu jati 2 batang</h4>
+        <p class="harga">Rp. 500.000</p>
+        <p class="terjual">2.100 Terjual</p>
+        <button>Tambahkan ke keranjang</button>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

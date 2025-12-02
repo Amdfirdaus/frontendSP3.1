@@ -1,0 +1,146 @@
+/* === BODY === */
+body {
+  font-family: Arial;
+  background: #f5f5f5;
+  margin: 0;
+  padding: 0;
+}
+
+/* === NAVBAR / HEADER === */
+.navbar {
+  display: flex;
+  align-items: center;
+  background: #ff5722;
+  padding: 15px 25px;
+  color: white;
+}
+
+.logo img {
+  width: 150px;
+  margin: auto;
+  border-radius: 20px;
+}
+
+/* Search box */
+.search-box {
+  width: 450px;
+  padding: 20px 10px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  gap: 20px;
+}
+
+/* Tombol Cari */
+.btn-cari {
+  margin-left: 10px;
+  padding: 20px 30px;
+  background: white;
+  color: #ff5722;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Icon Keranjang & Akun */
+.icons {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  font-size: 50px;
+}
+
+.icon {
+  margin-left: 15px;
+  cursor: pointer;
+}
+
+/* === MENU KATEGORI === */
+.menu {
+  background: #eeeeee;
+  padding: 12px 25px;
+  font-size: 15px;
+  display: flex;
+  gap: 25px;
+}
+
+.menu a {
+  cursor: pointer;
+  font-weight: 500;
+  text-transform: capitalize;
+  padding: 6px 12px;
+  border-radius: 4px;
+  transition: 0.25s ease;
+}
+/* Hover menu */
+.menu a:hover {
+  background: #ff5722;
+  color: white;
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* === FILTER HARGA === */
+.filter-box {
+  background: white;
+  width: 90%;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 6px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+#slider {
+  margin-top: 15px;
+}
+
+/* === CARD PRODUK === */
+.produk-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 50px;
+}
+
+.produk {
+  width: 200px;
+  background: white;
+  padding: 15px;
+  border-radius: 6px;
+  margin: 10px;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+/* Harga warna orange */
+.harga {
+  color: #ff5722;
+  font-weight: bold;
+  font-size: 16px;
+  margin-top: -5px;
+}
+
+/* Terjual */
+.terjual {
+  font-size: 13px;
+  color: gray;
+  margin-bottom: 12px;
+}
+
+/* Tombol keranjang */
+.produk button {
+  background: #ff5722;
+  color: white;
+  border: none;
+  padding: 8px;
+  width: 100%;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.produk button:hover {
+  box-shadow: 0px 6px 14px rgba(0, 0, 0, 0.35);
+  transform: translateY(-3px);
+  transition: 0.25s ease;
+}
