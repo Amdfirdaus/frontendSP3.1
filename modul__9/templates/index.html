@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='home.css') }}"
+    />
+  </head>
+  <body>
+    <div class="container mt-3">
+      <!-- BANNER -->
+      <div class="header">
+        <div class="banner">
+          <img
+            src="{{ url_for('static', filename='img/banner.jpg') }}"
+            alt="Banner"
+          />
+        </div>
+      </div>
+      <h4>Daftar Produk</h4>
+
+      <div class="row">
+        {% for p in products %}
+        <div class="col-6 col-md-3 mb-3">
+          <div class="card">
+            <img
+              src="{{ url_for('static', filename='img/' + p.gambar) }}"
+              class="card-img-top"
+              style="height: 150px; object-fit: cover"
+            />
+            <div class="card-body">
+              <h6 class="card-title">{{ p.nama_barang }}</h6>
+              <p>Rp {{ p.harga }}</p>
+              <a
+                href="/product/{{ p.id_barang }}"
+                class="btn btn-primary btn-sm w-100"
+              >
+                Detail
+              </a>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      <!-- BOTTOM NAV -->
+      <div class="bottom-nav">
+        <a href="/" class="nav-item">
+          <span>🏠</span>
+          <small>Home</small>
+        </a>
+
+        <a href="/cart" class="nav-item">
+          <span>🛒</span>
+          <small>Keranjang</small>
+        </a>
+
+        <a href="/checkout" class="nav-item">
+          <span>✅</span>
+          <small>Checkout</small>
+        </a>
+      </div>
+    </div>
+  </body>
+</html>
