@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Detail Produk</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body class="bg-light">
+    <div class="container mt-5">
+      <div class="card shadow p-4">
+        <div class="row g-4">
+          <!-- GAMBAR -->
+          <div class="col-md-5 text-center">
+            <img id="productImage" class="img-fluid rounded" alt="Produk" />
+          </div>
+
+          <!-- DETAIL -->
+          <div class="col-md-7">
+            <h3 id="productName"></h3>
+            <h4 class="text-primary mb-3" id="productPrice"></h4>
+
+            <p id="productDesc" class="text-muted"></p>
+
+            <div class="d-flex gap-2 mt-4">
+              <button class="btn btn-warning" id="buyBtn">Buy Now</button>
+              <a href="/" class="btn btn-outline-secondary"> Back </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const params = new URLSearchParams(window.location.search);
+      const productId = params.get("id");
+
+      async function loadDetail() {
+        const res = await fetch(`/api/products/${productId}`);
+        const product = await res.json();
+
+        document.getElementById("productImage").src = product.gambar
+          ? `/static/images/${product.gambar}`
+          : "/static/images/default.png";
+
+        document.getElementById("productName").innerText = product.nama_produk;
+        document.getElementById("productPrice").innerText =
+          "Rp " + product.harga.toLocaleString("id-ID");
+        document.getElementById("productDesc").innerText =
+          product.deskripsi || "Tidak ada deskripsi produk.";
+
+        document.getElementById("buyBtn").onclick = () => buyNow(product);
+      }
+
+      function buyNow(product) {
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+        const index = cart.findIndex((p) => p.id === product.id);
+
+        if (index !== -1) {
+          cart[index].qty += 1;
+        } else {
+          cart.push({
+            id: product.id,
+            nama_produk: product.nama_produk,
+            harga: product.harga,
+            gambar: product.gambar,
+            qty: 1,
+          });
+        }
+
+        localStorage.setItem("cart", JSON.stringify(cart));
+        window.location.href = "/checkout_page";
+      }
+
+      loadDetail();
+    </script>
+  </body>
+</html>

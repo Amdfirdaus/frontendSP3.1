@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Checkout</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        background-color: #f5f6f8;
+      }
+      .buy-card {
+        border-radius: 16px;
+        padding: 30px;
+      }
+      .product-img {
+        max-height: 380px;
+        object-fit: contain;
+        background: #fafafa;
+        padding: 20px;
+        border-radius: 12px;
+      }
+      .price {
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: #198754;
+      }
+      .total-box {
+        background: #f1f3f5;
+        padding: 15px;
+        border-radius: 10px;
+        font-size: 1.2rem;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container my-5">
+      <div class="row justify-content-center">
+        <div class="col-lg-10">
+          <div class="card shadow buy-card">
+            <div class="row g-4 align-items-center">
+              <!-- GAMBAR -->
+              <div class="col-md-5 text-center">
+                <img src="{{ product.gambar }}" class="img-fluid product-img" />
+              </div>
+
+              <!-- DETAIL -->
+              <div class="col-md-7">
+                <h2 class="fw-bold">{{ product.nama_produk }}</h2>
+
+                <span class="badge bg-secondary mb-2">
+                  {{ product.nama_kategori }}
+                </span>
+
+                <div class="price mt-2">
+                  Rp {{ "{:,}".format(product.harga).replace(",", ".") }}
+                </div>
+
+                <p class="text-muted mt-3">{{ product.deskripsi }}</p>
+
+                <hr />
+
+                <!-- FORM -->
+                <form action="/checkout" method="POST">
+                  <input
+                    type="hidden"
+                    name="product_id"
+                    value="{{ product.id }}"
+                  />
+                  <input type="hidden" id="harga" value="{{ product.harga }}" />
+
+                  <div class="mb-3">
+                    <label class="form-label fw-semibold">Jumlah</label>
+                    <input
+                      type="number"
+                      name="qty"
+                      id="qty"
+                      value="1"
+                      min="1"
+                      class="form-control form-control-lg"
+                      oninput="updateTotal()"
+                    />
+                  </div>
+
+                  <div class="total-box mb-3">
+                    Total:
+                    <strong id="total">
+                      Rp {{ "{:,}".format(product.harga).replace(",", ".") }}
+                    </strong>
+                  </div>
+
+                  <button class="btn btn-success btn-lg w-100">
+                    Checkout Sekarang
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function updateTotal() {
+        const harga = parseInt(document.getElementById("harga").value);
+        const qty = parseInt(document.getElementById("qty").value);
+        const total = harga * qty;
+
+        document.getElementById("total").innerText =
+          "Rp " + total.toLocaleString("id-ID");
+      }
+    </script>
+  </body>
+</html>

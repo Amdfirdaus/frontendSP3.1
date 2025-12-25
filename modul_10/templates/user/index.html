@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- basic -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- mobile metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1" />
+    <!-- site metas -->
+    <title>Toko Bangunan</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <!-- bootstrap css -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="/static/user/css/bootstrap.min.css"
+    />
+    <!-- style css -->
+    <link rel="stylesheet" type="text/css" href="/static/user/css/style.css" />
+    <!-- Responsive-->
+    <link rel="stylesheet" href="/static/user/css/responsive.css" />
+    <!-- fevicon -->
+    <link rel="icon" href="/static/user/images/fevicon.png" type="image/gif" />
+    <!-- Scrollbar Custom CSS -->
+    <link
+      rel="stylesheet"
+      href="/static/user/css/jquery.mCustomScrollbar.min.css"
+    />
+    <!-- Tweaks for older IEs-->
+    <link
+      rel="stylesheet"
+      href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css"
+    />
+    <!-- fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- font awesome -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <!--  -->
+    <!-- owl stylesheets -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Great+Vibes|Poppins:400,700&display=swap&subset=latin-ext"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/static/user/css/owl.carousel.min.css" />
+    <link rel="stylesheet" href="/static/user/css/owl.theme.default.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"
+      media="screen"
+    />
+    <style>
+      /* Ensure carousel controls are visible and clickable above other elements */
+      .carousel-control-prev,
+      .carousel-control-next {
+        z-index: 9999 !important;
+        width: 3.5% !important;
+        opacity: 1 !important;
+        background: transparent !important;
+        pointer-events: auto !important;
+      }
+      /* Make product cards consistent height so slides don't stretch */
+      #products-carousel .card {
+        min-height: 320px;
+      }
+      #products-carousel .card .card-img-top {
+        height: 180px;
+        object-fit: cover;
+      }
+      /* Product card visual to match screenshot */
+      .product-card {
+        background: #fff;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+        padding: 18px;
+        border-radius: 4px;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }
+      .product-card .product-title {
+        text-align: center;
+        font-weight: 700;
+        margin-bottom: 6px;
+        font-size: 1.05rem;
+      }
+      .product-card .product-price {
+        color: #f26522;
+        text-align: center;
+        margin-bottom: 12px;
+      }
+      .product-card .product-image {
+        height: 180px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        margin-bottom: 8px;
+      }
+      .product-card .product-image img {
+        max-height: 160px;
+        width: auto;
+        object-fit: contain;
+      }
+      .product-card .card-footer {
+        margin-top: auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 12px;
+        border-top: 1px solid #f0f0f0;
+      }
+      .product-card .buy-now {
+        color: #f26522;
+        font-weight: 700;
+      }
+      .product-card .see-more {
+        color: #333;
+      }
+      .carousel-control-prev i,
+      .carousel-control-next i {
+        font-size: 40px;
+        color: #000;
+      }
+      .besi_baja {
+        text-align: center;
+        margin-bottom: 30px;
+        font-size: 32px;
+        font-weight: 700;
+        color: #000;
+      }
+
+      .product-card {
+        border-radius: 10px;
+        background: #fff;
+        padding: 15px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+        height: 100%;
+      }
+
+      .product-card img {
+        width: 100%;
+        height: 180px;
+        object-fit: contain;
+      }
+
+      .price {
+        color: #ff6a00;
+        font-weight: bold;
+      }
+      /* wrapper kategori */
+      .category-wrapper {
+        display: flex;
+        flex-wrap: wrap; /* PENTING: bikin turun ke bawah */
+        gap: 10px;
+      }
+
+      /* tombol kategori */
+      .category-btn {
+        padding: 8px 16px;
+        border-radius: 8px;
+        border: 1px solid #0d6efd;
+        background: #fff;
+        color: #0d6efd;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+
+      .category-btn:hover {
+        background: #0d6efd;
+        color: #fff;
+      }
+
+      .category-btn.active {
+        background: #0d6efd;
+        color: #fff;
+      }
+
+      /* link lihat semua */
+      .see-all-btn {
+        background: none;
+        border: none;
+        color: #0d6efd;
+        font-weight: 500;
+        cursor: pointer;
+      }
+
+      .see-all-btn:hover {
+        text-decoration: underline;
+      }
+      /* ===== BANNER PALING DEPAN ===== */
+      .banner_bg_main {
+        position: relative;
+        z-index: 5;
+      }
+
+      /* slider & panah banner */
+      .banner_section,
+      #my_slider,
+      .carousel-inner,
+      .carousel-item {
+        position: relative;
+        z-index: 6;
+      }
+
+      /* panah kiri kanan */
+      .carousel-control-prev,
+      .carousel-control-next {
+        z-index: 10;
+      }
+
+      /* ===== HEADER TETAP DI ATAS UNTUK KLIK ===== */
+      .header_section,
+      .header_section_top,
+      .logo_section {
+        position: relative;
+        z-index: 20;
+      }
+
+      /* ===== KATEGORI DI BAWAH BANNER ===== */
+      .kategori-section {
+        position: relative;
+        z-index: 1;
+        margin-top: 120px; /* jarak aman */
+      }
+    </style>
+  </head>
+  <body>
+    <!-- BUTTON LOGIN -->
+    <button class="login-btn" onclick="openLogin()">Login</button>
+
+    <!-- POPUP LOGIN -->
+    <div id="loginModal" class="modal">
+      <div class="modal-content">
+        <span onclick="closeLogin()" class="close">&times;</span>
+
+        <h2>Login</h2>
+
+        <form method="POST" action="/login">
+          <input type="text" name="username" placeholder="Username" required />
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            required
+          />
+
+          <button type="submit">Login</button>
+        </form>
+      </div>
+    </div>
+    <!-- banner bg main start -->
+    <div class="banner_bg_main">
+      <!-- header top section start -->
+      <div class="container">
+        <div class="header_section_top">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="custom_menu">
+                <ul>
+                  <li><a href="#">Semen</a></li>
+                  <li><a href="#">Alat Bangunan</a></li>
+                  <li><a href="#">Cat</a></li>
+                  <li><a href="#">Besi & Baja</a></li>
+                  <li><a href="#">Kontak</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- header top section start -->
+      <!-- logo section start -->
+      <div class="logo_section">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="logo">
+                <a href="/"><img src="/static/user/images/logo.png" /></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- logo section end -->
+      <!-- header section start -->
+      <div class="header_section">
+        <div class="container">
+          <div class="containt_main">
+            <div id="mySidenav" class="sidenav">
+              <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"
+                >&times;</a
+              >
+              <a href="/">Home</a>
+              <a href="/besi_baja">Besi & Baja</a>
+              <a href="/material_bangunan">Material Bangunan</a>
+              <a href="/pasir_batu">Pasir & Batu</a>
+            </div>
+            <span class="toggle_icon" onclick="openNav()"
+              ><img src="/static/user/images/toggle-icon.png"
+            /></span>
+            <div class="dropdown">
+              <button
+                class="btn btn-secondary dropdown-toggle"
+                type="button"
+                id="dropdownMenuButton"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                All Category
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
+            </div>
+            <div class="main">
+              <!-- Another variation with a button -->
+              <div class="input-group">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Search this blog"
+                />
+                <div class="input-group-append">
+                  <button
+                    class="btn btn-secondary"
+                    type="button"
+                    style="background-color: #f26522; border-color: #f26522"
+                  >
+                    <i class="fa fa-search"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="header_box">
+              <div class="lang_box">
+                <a
+                  href="#"
+                  title="Language"
+                  class="nav-link"
+                  data-toggle="dropdown"
+                  aria-expanded="true"
+                >
+                  <img
+                    src="/static/user/images/flag-uk.png"
+                    alt="flag"
+                    class="mr-2"
+                    title="United Kingdom"
+                  />
+                  English
+                  <i class="fa fa-angle-down ml-2" aria-hidden="true"></i>
+                </a>
+                <div class="dropdown-menu">
+                  <a href="#" class="dropdown-item">
+                    <img
+                      src="/static/user/images/flag-france.png"
+                      class="mr-2"
+                      alt="flag"
+                    />
+                    French
+                  </a>
+                </div>
+              </div>
+              <div class="login_menu">
+                <ul>
+                  <li>
+                    <a href="/cart">
+                      <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                      <span class="padding_10">Cart</span></a
+                    >
+                  </li>
+                  <li>
+                    <a href="#">
+                      <i class="fa fa-user" aria-hidden="true"></i>
+                      <span class="padding_10">Cart</span></a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- header section end -->
+      <!-- banner section start -->
+      <div class="banner_section layout_padding">
+        <div class="container">
+          <div id="my_slider" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <h1 class="banner_taital">
+                      Lengkapi <br />Kebutuhan Bangunan Anda
+                    </h1>
+                    <div class="buynow_bt"><a href="#">Buy Now</a></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <a
+            class="carousel-control-prev"
+            href="#my_slider"
+            role="button"
+            data-slide="prev"
+          >
+            <i class="fa fa-angle-left"></i>
+          </a>
+          <a
+            class="carousel-control-next"
+            href="#my_slider"
+            role="button"
+            data-slide="next"
+          >
+            <i class="fa fa-angle-right"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+    <!-- banner bg main end -->
+    <!-- SECTION KATEGORI & PRODUK -->
+    <div class="container">
+      <h1 style="text-align: center">kategori Produk</h1>
+      <!-- BUTTON KATEGORI -->
+      <div id="category-buttons" class="category-wrapper mb-4"></div>
+    </div>
+
+    <!-- LIHAT SEMUA -->
+    <div class="text-center mb-4">
+      <button
+        id="toggle-category"
+        class="see-all-btn"
+        onclick="toggleCategories()"
+      >
+        Lihat semua kategori →
+      </button>
+    </div>
+
+    <!-- PRODUK -->
+    <div class="row" id="product-list"></div>
+    <script>
+      let allCategories = [];
+      let showAll = false;
+      const LIMIT = 6;
+
+      async function loadCategories() {
+        const res = await fetch("/api/categories");
+        allCategories = await res.json();
+        renderCategories();
+      }
+
+      function renderCategories() {
+        const wrap = document.getElementById("category-buttons");
+        wrap.innerHTML = "";
+
+        // tombol "Semua"
+        wrap.innerHTML += `
+    <button class="category-btn active"
+      onclick="filterCategory(null, this)">
+      Semua
+    </button>
+  `;
+
+        const categoriesToShow = showAll
+          ? allCategories
+          : allCategories.slice(0, LIMIT);
+
+        categoriesToShow.forEach((c) => {
+          wrap.innerHTML += `
+      <button class="category-btn"
+        onclick="filterCategory(${c.id}, this)">
+        ${c.nama_kategori}
+      </button>
+    `;
+        });
+
+        document.getElementById("toggle-category").innerText = showAll
+          ? "Tutup kategori ↑"
+          : "Lihat semua kategori →";
+      }
+
+      function toggleCategories() {
+        showAll = !showAll;
+        renderCategories();
+      }
+
+      function filterCategory(categoryId, btn) {
+        document
+          .querySelectorAll(".category-btn")
+          .forEach((b) => b.classList.remove("active"));
+
+        btn.classList.add("active");
+        loadProducts(categoryId);
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        loadCategories();
+        loadProducts();
+      });
+    </script>
+
+    <script>
+      async function loadProducts(categoryId = null) {
+        let url = "/api/products";
+        if (categoryId) {
+          url = `/api/products/category/${categoryId}`;
+        }
+
+        const res = await fetch(url);
+        const products = await res.json();
+
+        const list = document.getElementById("product-list");
+        list.innerHTML = "";
+
+        products.forEach((p) => {
+          list.innerHTML += `
+    <div class="col-lg-4 col-md-6 mb-4">
+      <div class="product-card">
+
+        <div class="product-image">
+          <img src="${p.gambar || "/static/user/images/no-image.png"}">
+        </div>
+
+        <h6 class="product-title">${p.nama_produk}</h6>
+
+        <p class="text-muted small"
+           style="
+             display: -webkit-box;
+             -webkit-line-clamp: 2;
+             -webkit-box-orient: vertical;
+             overflow: hidden;
+             min-height: 40px;
+           ">
+          ${p.deskripsi || "Tidak ada deskripsi produk"}
+        </p>
+
+        <div class="price">
+          Rp ${Number(p.harga).toLocaleString("id-ID")}
+        </div>
+        <div class="d-flex justify-content-between mt-2">
+      <a href="/checkout_page/${p.id}" class="btn btn-sm btn-warning">
+        Buy Now
+      </a>
+
+      <a href="/detail_produk/${p.id}" class="btn btn-sm btn-light">
+        See More
+      </a>
+    </div>
+      </div>
+    </div>
+  `;
+        });
+      }
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        loadCategories();
+        loadProducts();
+      });
+    </script>
+
+    <!-- Simplified placeholders for category sections (populated by JS) -->
+    <div class="material_bangunan_section" style="display: none"></div>
+    <div class="pasir_batu_section" style="display: none"></div>
+
+    <!-- footer section start -->
+    <div class="footer_section layout_padding">
+      <div class="container">
+        <div class="footer_logo">
+          <a href="/"><img src="/static/user/images/footer-logo.png" /></a>
+        </div>
+        <div class="input_bt">
+          <input
+            type="text"
+            class="mail_bt"
+            placeholder="Your Email"
+            name="Your Email"
+          />
+          <span class="subscribe_bt" id="basic-addon2"
+            ><a href="#">Subscribe</a></span
+          >
+        </div>
+        <div class="footer_menu">
+          <ul>
+            <li><a href="#">Best Sellers</a></li>
+            <li><a href="#">Gift Ideas</a></li>
+            <li><a href="#">New Releases</a></li>
+            <li><a href="#">Today's Deals</a></li>
+            <li><a href="#">Customer Service</a></li>
+          </ul>
+        </div>
+        <div class="location_main">
+          Help Line Number : <a href="#">+1 1800 1200 1200</a>
+        </div>
+      </div>
+    </div>
+    <!-- footer section end -->
+    <!-- copyright section start -->
+    <div class="copyright_section">
+      <div class="container">
+        <p class="copyright_text">
+          © 2020 All Rights Reserved. Design by
+          <a href="https://html.design">Free html Templates</a>
+        </p>
+      </div>
+    </div>
+    <!-- copyright section end -->
+    <!-- Javascript files-->
+    <script src="/static/user/js/jquery.min.js"></script>
+    <script src="/static/user/js/popper.min.js"></script>
+    <script src="/static/user/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/user/js/plugin.js"></script>
+    <!-- sidebar -->
+    <script src="/static/user/js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="/static/user/js/custom.js"></script>
+    <script>
+      // Delegate clicks on carousel controls to call Bootstrap carousel API
+      (function () {
+        if (window.addEventListener) {
+          // use capturing so this runs before jQuery/plugin handlers
+          document.addEventListener(
+            "click",
+            function (e) {
+              var el = e.target;
+              var ctrl =
+                el.closest &&
+                el.closest(".carousel-control-prev, .carousel-control-next");
+              if (!ctrl) return;
+              // intercept and prevent other handlers
+              if (e.stopImmediatePropagation) e.stopImmediatePropagation();
+              if (e.stopPropagation) e.stopPropagation();
+              e.preventDefault();
+              var target =
+                ctrl.getAttribute("href") || ctrl.getAttribute("data-target");
+              if (!target) return;
+              try {
+                if (window.jQuery) {
+                  var $c = window.jQuery(target);
+                  if ($c && $c.length) {
+                    if (ctrl.classList.contains("carousel-control-prev"))
+                      $c.carousel("prev");
+                    else if (ctrl.classList.contains("carousel-control-next"))
+                      $c.carousel("next");
+                  }
+                }
+              } catch (err) {
+                console.error("carousel control handler error", err);
+              }
+            },
+            true
+          );
+        }
+      })();
+
+      function openNav() {
+        document.getElementById("mySidenav").style.width = "250px";
+      }
+
+      function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+      }
+    </script>
+    <script>
+      // Ensure keyboard left/right will control the nearest carousel
+      (function () {
+        try {
+          if (window.jQuery) {
+            window.jQuery(function ($) {
+              // initialize any bootstrap carousels (idempotent)
+              $(".carousel").each(function () {
+                try {
+                  $(this).carousel();
+                } catch (e) {
+                  console.error("carousel init", e);
+                }
+              });
+
+              // keyboard handler: when arrow keys pressed, move the closest carousel
+              $(document).on("keydown", function (e) {
+                if (e.keyCode !== 37 && e.keyCode !== 39) return;
+                var active = document.activeElement;
+                var $closest = $(active).closest(".carousel");
+                if (!$closest.length) {
+                  // fallback to first visible carousel
+                  $closest = $(".carousel:visible").first();
+                }
+                if (!$closest.length) return;
+                e.preventDefault();
+                if (e.keyCode === 37) $closest.carousel("prev");
+                else if (e.keyCode === 39) $closest.carousel("next");
+              });
+            });
+          }
+        } catch (err) {
+          console.error("carousel extra init error", err);
+        }
+      })();
+
+      function openLogin() {
+        document.getElementById("loginModal").style.display = "block";
+      }
+
+      function closeLogin() {
+        document.getElementById("loginModal").style.display = "none";
+      }
+    </script>
+    <script>
+      function login() {
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+
+        fetch("/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ username, password }),
+          credentials: "include",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.role === "admin") {
+              window.location.href = "/admin";
+            } else {
+              window.location.href = "/";
+            }
+          })
+          .catch(() => alert("Login gagal"));
+      }
+    </script>
+  </body>
+</html>
