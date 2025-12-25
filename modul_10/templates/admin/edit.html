@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit Produk</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap Icons -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+
+    <style>
+      .form-container {
+        max-width: 700px;
+        margin: auto;
+      }
+      .image-preview {
+        max-width: 200px;
+        max-height: 200px;
+        object-fit: cover;
+        border: 2px solid #dee2e6;
+        border-radius: 8px;
+      }
+    </style>
+  </head>
+
+  <body class="bg-light">
+    <div class="container mt-4 mb-4">
+      <div class="form-container">
+        <div class="card shadow">
+          <div class="card-header bg-primary text-white">
+            <h4 class="mb-0">
+              <i class="bi bi-pencil-square"></i> Edit Produk
+            </h4>
+          </div>
+
+          <div class="card-body">
+            <div id="alert-container"></div>
+
+            <form id="editForm">
+              <div class="mb-3">
+                <label class="form-label fw-bold">Nama Produk</label>
+                <input
+                  type="text"
+                  id="nama_produk"
+                  class="form-control form-control-lg"
+                  required
+                />
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label fw-bold">Kategori</label>
+                <select
+                  id="kategori_id"
+                  class="form-select form-select-lg"
+                  required
+                >
+                  <option value="">Pilih Kategori</option>
+                </select>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label fw-bold">Harga</label>
+                <div class="input-group input-group-lg">
+                  <span class="input-group-text">Rp</span>
+                  <input
+                    type="number"
+                    id="harga"
+                    class="form-control"
+                    min="0"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label fw-bold">Deskripsi Produk</label>
+                <textarea
+                  id="deskripsi"
+                  class="form-control form-control-lg"
+                  rows="4"
+                  required
+                ></textarea>
+              </div>
+
+              <div class="mb-3 text-center">
+                <p class="fw-bold mb-1">Gambar Saat Ini</p>
+                <img id="currentImage" class="image-preview d-none" />
+                <p id="noImage" class="text-muted d-none">Tidak ada gambar</p>
+              </div>
+
+              <div class="mb-4">
+                <label class="form-label fw-bold"
+                  >Ganti Gambar (Opsional)</label
+                >
+                <input
+                  type="file"
+                  id="gambar"
+                  class="form-control form-control-lg"
+                  accept="image/*"
+                />
+              </div>
+
+              <div class="d-flex justify-content-between">
+                <a href="/admin" class="btn btn-secondary btn-lg">
+                  <i class="bi bi-arrow-left"></i> Kembali
+                </a>
+                <button class="btn btn-primary btn-lg" type="submit">
+                  <i class="bi bi-save"></i> Simpan
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+      const productId = {{ product_id }};
+      let productData = null;
+
+      async function loadCategories(selectedId) {
+        const res = await fetch('/api/categories');
+        const data = await res.json();
+        const select = document.getElementById('kategori_id');
+
+        data.forEach(cat => {
+          const opt = document.createElement('option');
+          opt.value = cat.id;
+          opt.textContent = cat.nama_kategori;
+          if (cat.id === selectedId) opt.selected = true;
+          select.appendChild(opt);
+        });
+      }
+
+      async function loadProduct() {
+        const res = await fetch(`/api/products/${productId}`);
+        productData = await res.json();
+
+        document.getElementById('nama_produk').value = productData.nama_produk;
+        document.getElementById('deskripsi').value = productData.deskripsi;
+        document.getElementById('harga').value = productData.harga;
+
+        if (productData.gambar) {
+          const img = document.getElementById('currentImage');
+          img.src = productData.gambar;
+          img.classList.remove('d-none');
+        } else {
+          document.getElementById('noImage').classList.remove('d-none');
+        }
+
+        await loadCategories(productData.kategori_id);
+      }
+
+      document.getElementById('editForm').addEventListener('submit', async e => {
+        e.preventDefault();
+
+        const fd = new FormData();
+        fd.append('nama_produk', document.getElementById('nama_produk').value);
+        fd.append('deskripsi', document.getElementById('deskripsi').value);
+        fd.append('harga', document.getElementById('harga').value);
+        fd.append('kategori_id', document.getElementById('kategori_id').value);
+
+        const file = document.getElementById('gambar').files[0];
+        if (file) fd.append('gambar', file);
+
+        const res = await fetch(`/api/admin/products/${productId}`, {
+          method: 'POST',
+          body: fd,
+          credentials: "include"
+        });
+
+        const data = await res.json();
+        if (res.ok) {
+          showAlert('Produk berhasil diupdate', 'success');
+          setTimeout(() => location.href = '/admin', 1200);
+        } else {
+          showAlert(data.error || 'Gagal update', 'danger');
+        }
+      });
+
+      function showAlert(msg, type) {
+        document.getElementById('alert-container').innerHTML = `
+          <div class="alert alert-${type} alert-dismissible fade show">
+            ${msg}
+            <button class="btn-close" data-bs-dismiss="alert"></button>
+          </div>`;
+      }
+
+      loadProduct();
+    </script>
+  </body>
+</html>
