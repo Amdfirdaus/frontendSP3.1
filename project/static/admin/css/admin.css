@@ -1,0 +1,207 @@
+* {
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+  background: #0f172a;
+  color: #e5e7eb;
+}
+
+/* SIDEBAR */
+.sidebar {
+  width: 230px;
+  height: 100vh;
+  position: fixed;
+  background: #020617;
+  padding: 20px;
+}
+
+.sidebar .logo {
+  color: #38bdf8;
+  margin-bottom: 30px;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar li {
+  padding: 12px;
+  cursor: pointer;
+  color: #cbd5f5;
+}
+
+.sidebar li:hover,
+.sidebar li.active {
+  background: #1e293b;
+  border-radius: 6px;
+}
+
+.sidebar a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* MAIN */
+.main {
+  margin-left: 230px;
+  padding: 25px;
+}
+
+/* TOOLBAR */
+.toolbar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.toolbar input,
+.toolbar select {
+  padding: 10px;
+  background: #020617;
+  border: 1px solid #334155;
+  color: white;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.toolbar select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23ffffff' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  padding-right: 35px;
+}
+
+.toolbar select:hover {
+  border-color: #38bdf8;
+}
+
+.toolbar select:focus {
+  outline: none;
+  border-color: #38bdf8;
+  box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.2);
+}
+
+/* GRID */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 15px;
+}
+
+.product-card {
+  background: #020617;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.product-card img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.product-card h6 {
+  margin: 10px 0 5px;
+}
+
+.price {
+  color: #38bdf8;
+  font-weight: bold;
+}
+
+.actions {
+  display: flex;
+  gap: 5px;
+  margin-top: 10px;
+}
+
+.actions button {
+  flex: 1;
+  padding: 6px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-edit {
+  background: #facc15;
+}
+
+.btn-delete {
+  background: #ef4444;
+  color: white;
+}
+
+/* FORM */
+.hidden {
+  display: none;
+}
+
+#formPanel {
+  max-width: 500px;
+}
+
+#formPanel label {
+  display: block;
+  margin-top: 15px;
+}
+
+#formPanel input,
+#formPanel textarea,
+#formPanel select {
+  width: 100%;
+  padding: 10px;
+  background: #020617;
+  border: 1px solid #334155;
+  color: white;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+#formPanel select {
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23ffffff' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  padding-right: 35px;
+}
+
+#formPanel select:hover {
+  border-color: #38bdf8;
+}
+
+#formPanel select:focus {
+  outline: none;
+  border-color: #38bdf8;
+  box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.2);
+}
+
+.form-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.btn-primary {
+  background: #22c55e;
+  border: none;
+  padding: 10px;
+  flex: 1;
+}
+
+.btn-secondary {
+  background: #475569;
+  border: none;
+  padding: 10px;
+  flex: 1;
+}
