@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Admin Produk</title>
+    <link rel="stylesheet" href="/static/admin/css/admin.css" />
+  </head>
+  <body>
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+      <h2 class="logo">ADMIN</h2>
+      <ul>
+        <li class="active" onclick="showGrid()">Produk</li>
+        <li onclick="showForm()">Tambah Produk</li>
+        <li onclick="showCategoryForm()">Tambah Kategori</li>
+        <li><a href="/logout">Logout</a></li>
+      </ul>
+    </div>
+
+    <!-- MAIN -->
+    <div class="main">
+      <!-- GRID PANEL -->
+      <div id="gridPanel">
+        <h2>Daftar Produk</h2>
+
+        <div class="toolbar">
+          <input id="search" placeholder="Cari produk..." />
+          <select id="filterKategori">
+            <option value="">Semua Kategori</option>
+          </select>
+        </div>
+
+        <div id="productGrid" class="grid"></div>
+      </div>
+
+      <!-- FORM PANEL -->
+      <div id="formPanel" class="hidden">
+        <h2 id="formTitle">Tambah Produk</h2>
+
+        <form id="productForm" enctype="multipart/form-data">
+          <input type="hidden" id="productId" />
+
+          <label>Nama Produk</label>
+          <input type="text" id="nama_produk" name="nama_produk" required />
+
+          <label>Deskripsi</label>
+          <textarea id="deskripsi" name="deskripsi"></textarea>
+
+          <label>Harga</label>
+          <input type="number" id="harga" name="harga" required />
+
+          <label>Kategori</label>
+          <select id="kategori" name="kategori_id" required>
+            <option value="">Pilih Kategori</option>
+          </select>
+
+          <label>Gambar</label>
+          <input type="file" id="gambar" name="gambar" accept="image/*" />
+
+          <label>Stok</label>
+          <input type="number" id="stok" name="stok" required />
+
+          <div class="form-actions">
+            <button type="submit" class="btn-primary">Simpan</button>
+            <button type="button" class="btn-secondary" onclick="showGrid()">
+              Batal
+            </button>
+          </div>
+        </form>
+      </div>
+      <!-- FORM KATEGORI -->
+      <div id="categoryPanel" class="hidden">
+        <h2>Tambah Kategori</h2>
+
+        <form id="categoryForm">
+          <label>Nama Kategori</label>
+          <input type="text" id="nama_kategori" required />
+
+          <div class="form-actions">
+            <button type="submit" class="btn-primary">Simpan</button>
+            <button type="button" class="btn-secondary" onclick="showGrid()">
+              Batal
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="/static/admin/js/admin.js"></script>
+  </body>
+</html>
